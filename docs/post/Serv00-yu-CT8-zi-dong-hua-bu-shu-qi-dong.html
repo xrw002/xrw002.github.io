@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="## Serv00与CT8自动化部署启动，保号续期保活，节点被删自动重新部署，发送节点消息到Telegram
+
+## 利用github Action以及python脚本实现，支持多个账号批量部署，CF CDN自动配置
+
+###  将代码fork到你的仓库并运行的操作步骤
+
+## (一). Fork 仓库
+
+```
+1、访问原始仓库页面： 打开你想要 fork 的 GitHub 仓库页面。">
+<meta property="og:title" content="Serv00与CT8自动化部署启动">
+<meta property="og:description" content="## Serv00与CT8自动化部署启动，保号续期保活，节点被删自动重新部署，发送节点消息到Telegram
+
+## 利用github Action以及python脚本实现，支持多个账号批量部署，CF CDN自动配置
+
+###  将代码fork到你的仓库并运行的操作步骤
+
+## (一). Fork 仓库
+
+```
+1、访问原始仓库页面： 打开你想要 fork 的 GitHub 仓库页面。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xrw002.github.io/post/Serv00-yu-CT8-zi-dong-hua-bu-shu-qi-dong.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>Serv00与CT8自动化部署启动</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Serv00与CT8自动化部署启动</h1>
+<div class="title-right">
+    <a href="https://xrw002.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xrw002/xrw002.github.io/issues/1" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h2>Serv00与CT8自动化部署启动，保号续期保活，节点被删自动重新部署，发送节点消息到Telegram</h2>
+<h2>利用github Action以及python脚本实现，支持多个账号批量部署，CF CDN自动配置</h2>
+<h3>将代码fork到你的仓库并运行的操作步骤</h3>
+<h2>(一). Fork 仓库</h2>
+<pre class="notranslate"><code class="notranslate">1、访问原始仓库页面： 打开你想要 fork 的 GitHub 仓库页面。
+2、Fork 仓库 点击页面右上角的 "Fork" 按钮，将仓库 fork 到你的 GitHub 账户下。
+3、若没有Serv00服务器 请参照(六)服务器Serv00免费申请教程,从教程【搭建vless节点】步骤开始就可使用本项目进行自动化部署：
+   包括自动申请随机端口、自动化配置服务器运行环境、自建节点启动，节点保活节点下线自动重启，支持node和PM2两种启动方式
+</code></pre>
+<h2>(二). 设置 Telegram token</h2>
+<pre class="notranslate"><code class="notranslate">1、创建 Telegram Bot 【非必须】，如果没有配置此项 tg无法收到节点信息
+    在 Telegram 中找到 @BotFather，创建一个新 Bot，并获取 API Token。 
+    获取到你的 Chat ID 方法一，在一休技术交流群里发送/id@KinhRoBot获取，返回用户信息中的ID就是Chat ID
+    获取到你的 Chat ID 方法二，可以通过向 Bot 发送一条消息，然后访问 https://api.telegram.org/bot&lt;your_bot_token&gt;/getUpdates 找到 Chat ID
+</code></pre>
+<h2>(三). 配置 GitHub Secrets</h2>
+<p><strong>1、Setting-&gt;Secrets-&gt;actions 添加secrets名称：ENV_CONFIG</strong><br><br>
+(注：此项可直接复制下面的内容配置即可)</p>
+<div class="highlight highlight-source-json"><pre class="notranslate">{
+  <span class="pl-ent">"env_config"</span>: {
+    <span class="pl-ent">"reset"</span>: <span class="pl-c1">1</span>,
+    <span class="pl-ent">"outo_npm_install"</span>: <span class="pl-c1">1</span>,
+    <span class="pl-ent">"code_source_url"</span>: <span class="pl-s"><span class="pl-pds">"</span>git clone http://github.com/zjxde/serv00-ws<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"kill_pid_path"</span>: <span class="pl-s"><span class="pl-pds">"</span>serv00<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"nodejs_name"</span>: <span class="pl-s"><span class="pl-pds">"</span>index<span class="pl-pds">"</span></span>
+  }
+}</pre></div>
+<p><strong>2、Setting-&gt;Secrets-&gt;actions 添加secrets名称：USER_INFO</strong><br>
+检验配置内容是否json格式有效地址：<a href="https://www.bejson.com/explore/index_new/" rel="nofollow">https://www.bejson.com/explore/index_new/</a></p>
+<pre class="notranslate"><code class="notranslate">(注：此项参数中括号只是配置说明，需要修改成你自己的) 
+配置格式为json格式：{"tg_config"{你的配置},accounts:[{账号一配置},{账号二配置},......]}
+</code></pre>
+<div class="highlight highlight-source-json"><pre class="notranslate">{
+  <span class="pl-ent">"tg_config"</span>: {
+    <span class="pl-ent">"tg_bot_token"</span>: <span class="pl-s"><span class="pl-pds">"</span>tg token<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"tg_chat_id"</span>: <span class="pl-s"><span class="pl-pds">"</span>tg chat id<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"send_tg"</span>: <span class="pl-c1">1</span>,
+    <span class="pl-ent">"node_num"</span>: <span class="pl-c1">2</span>,
+    <span class="pl-ent">"usepm2"</span>: <span class="pl-c1">0</span>,
+    <span class="pl-ent">"cf_token"</span>: <span class="pl-s"><span class="pl-pds">"</span>xxx<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"cf_username"</span>: <span class="pl-s"><span class="pl-pds">"</span>xxx<span class="pl-pds">"</span></span>
+    
+  },
+  <span class="pl-ent">"accounts"</span>: [
+    {
+      <span class="pl-ent">"username"</span>: <span class="pl-s"><span class="pl-pds">"</span>【用户名】<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"password"</span>: <span class="pl-s"><span class="pl-pds">"</span>【密码】<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"domain"</span>: <span class="pl-s"><span class="pl-pds">"</span>【域名】<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"pannelnum"</span>: <span class="pl-c1">6</span>,
+      <span class="pl-ent">"cmd"</span>:<span class="pl-s"><span class="pl-pds">"</span>python reset 20<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"server_type"</span>: <span class="pl-c1">1</span>,
+      <span class="pl-ent">"use_cf"</span>: <span class="pl-c1">1</span>,
+      <span class="pl-ent">"ssl_domains"</span>: <span class="pl-s"><span class="pl-pds">"</span>xxx.username.us.kg,xxx2.username.us.kg<span class="pl-pds">"</span></span>
+    },
+    {
+      <span class="pl-ent">"username"</span>: <span class="pl-s"><span class="pl-pds">"</span>【用户名】<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"password"</span>: <span class="pl-s"><span class="pl-pds">"</span>【密码】<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"domain"</span>: <span class="pl-s"><span class="pl-pds">"</span>【域名】<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"pannelnum"</span>: <span class="pl-c1">6</span>,
+      <span class="pl-ent">"cmd"</span>:<span class="pl-s"><span class="pl-pds">"</span>python reset 20<span class="pl-pds">"</span></span>,
+      <span class="pl-ent">"server_type"</span>: <span class="pl-c1">1</span>,
+      <span class="pl-ent">"use_cf"</span>: <span class="pl-c1">0</span>
+    }
+  ]
+}
+</pre></div>
+<p><strong>3、Setting-&gt;Secrets-&gt;actions 添加secrets名称：ENV_CMD,值复制下面内容</strong></p>
+<pre class="notranslate"><code class="notranslate">py restart 30
+</code></pre>
+<p><strong>4、ENV_CONFIG 配置项参数说明</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>port</td>
+<td>节点端口号</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>是否需要重装节点 0：不重装 1：重装</td>
+</tr>
+<tr>
+<td>outo_npm_install</td>
+<td>是否自动安装 0：手动安装 1 : 自动安装 此项默认即可</td>
+</tr>
+<tr>
+<td>code_source_url</td>
+<td>节点代码地址 默认即可</td>
+</tr>
+<tr>
+<td>kill_pid_path</td>
+<td>默认即可</td>
+</tr>
+<tr>
+<td>nodejs_name</td>
+<td>节点布置文件node.js的名称 默认即可</td>
+</tr>
+<tr>
+<td>uuid</td>
+<td>节点uuid值，可以不修改</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>3、USER_INFO 配置项参数说明</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tg_chat_id</td>
+<td>Chat ID  当send_tg=0此项默认即可</td>
+</tr>
+<tr>
+<td>send_tg</td>
+<td>是否需要发送节点信息到telegram ,1:开启 0：不开启</td>
+</tr>
+<tr>
+<td>node_num</td>
+<td>开启节点个数，由于节点serv00端口限制，最多可设3个，默认2个</td>
+</tr>
+<tr>
+<td>usepm2</td>
+<td>是否开启pm2 1:开启 0：不开启 ,默认不开启, 比较耗资源建议不开启</td>
+</tr>
+<tr>
+<td>username</td>
+<td><strong>用户名</strong></td>
+</tr>
+<tr>
+<td>password</td>
+<td><strong>密码</strong></td>
+</tr>
+<tr>
+<td>domain</td>
+<td><strong>你申请的域名，如CF绑定的域名,或serv00默认域名</strong></td>
+</tr>
+<tr>
+<td>pannelnum</td>
+<td>你申请机器号,如panel6.serv00.com就设置为6, CT8此项默认即可</td>
+</tr>
+<tr>
+<td>server_type</td>
+<td>服务器类型 1: Serv00  2: CT8  ，默认为1</td>
+</tr>
+<tr>
+<td>cmd</td>
+<td><strong>reset:重新安装节点 ,keepalive:保活 ,restart:只重启 ,三种模式后面参数都可跟保活间隔时间 ,单位为分钟 如： python restart 20 ,就表示重启并保活 时间设置为20分钟，若不加时间参数，则不会进行节点保活</strong></td>
+</tr>
+<tr>
+<td>basepath</td>
+<td>节点部署目录：默认 /home/XXX[用户名]/domains/XXX[域名]/app2/serv00-ws/</td>
+</tr>
+<tr>
+<td>tg_bot_token</td>
+<td>申请tg机器人的token</td>
+</tr>
+<tr>
+<td>cf_username</td>
+<td>cloudflare 用户名 当use_cf=0 此项默认即可</td>
+</tr>
+<tr>
+<td>cf_token</td>
+<td>cloudflare API 密钥 （<strong>Global API Key</strong>） <a href="https://dash.cloudflare.com/profile/api-tokens" rel="nofollow">https://dash.cloudflare.com/profile/api-tokens</a> ，当use_cf=0此项默认即可</td>
+</tr>
+<tr>
+<td>use_cf</td>
+<td>是否开启CF CDN 1：开启 0：不开启</td>
+</tr>
+<tr>
+<td>ssl_domains</td>
+<td>当use_cf =1时 此项必填，CF CDN记录配置域名如：test.junx066.us.kg 多个域名以英文逗号隔开</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h2>(四). 启动 GitHub Actions</h2>
+<pre class="notranslate"><code class="notranslate">1、配置 GitHub Actions
+    》在你的 fork 仓库中，进入 Actions 页面。
+    》如果 Actions 没有自动启用，点击 Enable GitHub Actions 按钮以激活它。
+2、运行工作流 
+    》GitHub Actions 将会根据你设置自动运行脚本。
+    》如果需要手动触发，可以在 Actions 页面手动运行工作流。
+3、工作流文件有 
+    auto_deploy.yaml:一开始部署使用此任务
+    auto_restart.yaml : 可自定义命令重启服务器 注使用该使用需要手动配置 secrets 名称为 ENV_CMD，值为 py restart 10【推荐】 ，后面
+    的数值可按自己需求自行修改( 参数说明：reset:重新初始化环境 keepalive:保活 restart:只重启 三种模式后面参数都可跟保活间隔时间，单位为分钟)
+</code></pre>
+<h3>操作步骤说明</h3>
+<p><a target="_blank" rel="noopener noreferrer" href="github_opt.png"><img src="github_opt.png" alt="执行action" style="max-width: 100%;"></a></p>
+<br>
+<h2>(五).注意事项</h2>
+<pre class="notranslate"><code class="notranslate">1、保密性: Secrets 是敏感信息，请确保不要将它们泄露到公共代码库或未授权的人员。
+2、更新和删除: 如果需要更新或删除 Secrets，可以通过仓库的 Secrets 页面进行管理。
+3、通过以上步骤，你就可以成功将代码 fork 到你的仓库下并运行了。如果需要进一步的帮助或有其他问题，请随时告知！
+</code></pre>
+<h2>(六).相关教程</h2>
+<p>1、<a href="https://blog.yixiu.us.kg/posts/gratis/freevpsandvless/" rel="nofollow">服务器Serv00免费申请教程</a><br>
+2、<a href="https://github.com/yixiu001/serv00-login">Serv00与ct8自动化批量保号</a><br>
+3、<a href="https://t.me/yxjsjl" rel="nofollow">TG技术交流群</a><br>
+4、<a href="https://www.bejson.com/explore/index_new/" rel="nofollow">校验json地址</a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xrw002.github.io">Blog Title</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if(""!=""){
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xrw002/xrw002.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
